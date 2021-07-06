@@ -1,0 +1,44 @@
+{
+  "task": {
+    "train_data": {
+      "input_path": "local/outputs/tf_examples.tfrecord",
+      "global_batch_size": 32,
+      "seq_length": 40
+    },
+    "validation_data": {
+      "input_path": "local/outputs/tf_examples.tfrecord",
+      "global_batch_size": 32,
+      "seq_length": 40
+    },
+    "model": {
+      "cls_heads": [
+        {
+          "inner_dim": 12
+        }
+      ],
+      "encoder": {
+        "bert": {
+          "hidden_size": 12,
+          "intermediate_size": 4,
+          "max_position_embeddings": 512,
+          "vocab_size": 10,
+          "num_layers": 1
+        }
+      }
+    }
+  },
+  "trainer": {
+    "optimizer_config": {
+      "learning_rate": {
+        "polynomial": {
+          "decay_steps": 100
+        }
+      },
+      "warmup": {
+        "polynomial": {
+          "warmup_steps": 0
+        }
+      }
+    }
+  }
+}
